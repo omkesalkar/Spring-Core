@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- cfg java class as spring bean -->
+    <bean id="ltime" class="java.time.LocalTime" factory-method="now"/> <!-- dependent spring bean cfg -->
+    <bean id="ldate" class="java.time.LocalDate" factory-method="now"/> <!-- dependent spring bean cgf -->
+
+	<bean id="wmg" class="com.nt.sbeans.WishMessageGenerator"> <!-- target spring bean cfg -->
+		<constructor-arg name="time" ref="ltime"/>			<!-- Construction Injections for target class properties  -->
+		<constructor-arg name="date" ref="ldate"/>
+		<constructor-arg name="age" value="22"/>
+		<constructor-arg name="email" value="omkesalkar0@gmail.com"/>
+		
+	<!-- <property name="age" value="21"/> Always setter method property will print coz property tag of target spring bean setter injection loads before dependent spring bean class obj -->	
+	</bean>
+
+</beans>
